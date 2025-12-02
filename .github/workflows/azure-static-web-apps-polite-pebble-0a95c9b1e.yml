@@ -14,9 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
+
+      # Checkout repository
       - uses: actions/checkout@v3
 
-      # Install Node 20 so Vite can build
+      # Install correct Node version for Vite (Node 20+)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -26,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Build the Vite project
+      # Build Vite project
       - name: Build
         run: npm run build
 
@@ -39,5 +41,3 @@ jobs:
           action: "upload"
           app_location: "/"
           output_location: "dist"
-
-
