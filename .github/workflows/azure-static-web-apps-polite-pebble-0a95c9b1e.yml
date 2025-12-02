@@ -17,28 +17,24 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Use Node 20 for Vite
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      # Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Build the Vite project
       - name: Build project
         run: npm run build
 
-      # Deploy built files from /dist
       - name: Deploy to Azure
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_POLITE_PEBBLE_0A95C9B1E }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: "upload"
+          action: upload
           skip_app_build: true
           skip_api_build: true
-          app_location: "/"
-          output_location: "dist"
+          app_location: "dist"
+          output_location: "."
