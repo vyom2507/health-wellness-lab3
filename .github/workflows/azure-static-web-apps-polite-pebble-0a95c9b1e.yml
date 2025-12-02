@@ -17,15 +17,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Use Node 20 so Vite works
+      # Use Node 20 for Vite
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: "20"
 
+      # Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # Build the Vite project
       - name: Build project
         run: npm run build
 
@@ -39,4 +41,4 @@ jobs:
           skip_app_build: true
           skip_api_build: true
           app_location: "/"
-          app_artifact_location: "dist"
+          output_location: "dist"
